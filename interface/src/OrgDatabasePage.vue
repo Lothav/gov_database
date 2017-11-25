@@ -1,12 +1,12 @@
 <template>
-  <div id="app">
-    <text-p v-for="desc in descs" :key="desc" :text="desc"/>
+  <div id="org-database-page">
+    <text-p v-for="desc in descs" :key="desc" :text="desc" />
   </div>
 </template>
 <script>
   import TextP from './components/TextP'
   export default {
-    name: 'app',
+    name: 'org-database-page',
     data () {
       return {
         descs: [
@@ -22,7 +22,7 @@
   }
 </script>
 <style>
-  #app {
+  #org-database-page {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
