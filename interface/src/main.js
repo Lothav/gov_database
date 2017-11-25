@@ -2,6 +2,9 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+import 'animate.css/animate.css'
+import AnimatedVue from 'animated-vue'
+Vue.use(AnimatedVue)
 
 Vue.config.productionTip = false
 
