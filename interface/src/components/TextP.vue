@@ -1,7 +1,7 @@
 <template>
-  <animated-fade-in>
+  <animated-fade-in-down>
     <p>{{text}}</p>
-  </animated-fade-in>
+  </animated-fade-in-down>
 </template>
 <script>
   export default {
