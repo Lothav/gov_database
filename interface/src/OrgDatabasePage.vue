@@ -5,15 +5,18 @@
       <h2>Ocorrências Aeronáuticas na Aviação Civil Brasileira</h2>
     </div>
     <text-p v-for="desc in descs" :key="desc" :text="desc" />
+    <h4>Consulta ao banco</h4>
+    <text-p :text="'Utilizando o modelo relacional descrito abaixo, é possível fazer consultas no banco:'" />
     <div id="dataset" >
       <img src="./assets/data_model.png" alt="">
     </div>
+    <p>Insira no campo abaixo sua pesquisa e pressione <b>Enter</b>:</p>
     <b-form-input @keyup.enter.native="getQuery()" v-model="query" type="text" placeholder="Insira a query SQL"></b-form-input>
-    <h2 v-if="rowCount != -1">Total de resultados: {{rowCount}}</h2>
-    <div class="table-box">
+    <div class="total-result" v-if="rowCount != -1">Total de resultados: {{rowCount}}</div>
+    <div class="table-box" v-if="rows.length">
       <b-table striped hover :items="rows"></b-table>
     </div>
-      <pulse-loader class="loading-item" :color="'#333'" :size="'20px'" :loading="loading" ></pulse-loader>
+    <pulse-loader class="loading-item" :color="'#333'" :size="'20px'" :loading="loading" ></pulse-loader>
   </div>
 </template>
 <script>
@@ -61,20 +64,30 @@
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
     color: #2c3e50;
     padding: 50px;
+  }
+
+  #title {
+    text-align: center;
+    margin-bottom: 40px;
   }
 
   .table-box {
     width: 100%;
     max-width: 100%;
+    overflow: auto;
+    font-size: 12px;
+    height: 100vh;
   }
 
   .loading-item {
     top: 45vh;
     left: 45vw;
     position: fixed;
+  }
 
+  .total-result {
+    margin: 15px 0;
   }
 </style>
