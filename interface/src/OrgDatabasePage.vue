@@ -81,6 +81,10 @@
     height: 100vh;
   }
 
+  #dataset img{
+    width: 100%;
+  }
+
   .loading-item {
     top: 45vh;
     left: 45vw;
