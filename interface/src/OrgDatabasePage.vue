@@ -9,6 +9,7 @@
       <img src="./assets/data_model.png" alt="">
     </div>
     <b-form-input v-model="query" type="text" placeholder="Insira a query SQL"></b-form-input>
+    <button @click="getQuery()">Get Query</button>
   </div>
 </template>
 <script>
@@ -29,7 +30,7 @@
       TextP
     },
     methods: {
-      getQuery: () => {
+      getQuery: function () {
         let baseUrl = 'https://luizotavioapi.herokuapp.com/getQuery?q='
         this.$http.get(baseUrl + this.query).then(response => {
           console.log(response)

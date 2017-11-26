@@ -8,7 +8,9 @@ import BootstrapVue from 'bootstrap-vue'
 import 'animate.css/animate.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import VueResource from 'vue-resource'
 
+Vue.use(VueResource)
 Vue.use(BootstrapVue)
 Vue.use(AnimatedVue)
 
