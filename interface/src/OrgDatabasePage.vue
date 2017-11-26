@@ -8,9 +8,7 @@
     <div id="dataset" >
       <img src="./assets/data_model.png" alt="">
     </div>
-    <b-form-input v-model="query"
-                  type="text"
-                  placeholder="Insira a query SQL"></b-form-input>
+    <b-form-input v-model="query" type="text" placeholder="Insira a query SQL"></b-form-input>
   </div>
 </template>
 <script>
@@ -29,6 +27,18 @@
     },
     components: {
       TextP
+    },
+    methods: {
+      getQuery: () => {
+        let baseUrl = 'https://luizotavioapi.herokuapp.com/getQuery?q='
+        this.$http.get(baseUrl + this.query).then(response => {
+          console.log(response)
+          this.someData = response.body
+        }, response => {
+          console.log(response)
+        })
+      }
+
     }
   }
 </script>
