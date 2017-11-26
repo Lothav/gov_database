@@ -8,7 +8,7 @@ cd ~/gov_database/interface/dist/static/js &&
 for i in *; do
     sed -i -e 's/\/static/\/ibd\/static/g' $i
 done &&
-rm -r ~/LuizOtav.io/ibd &&
+#rm -r ~/LuizOtav.io/ibd &&
 mv ~/gov_database/interface/dist ~/LuizOtav.io/ibd &&
 cd ~/LuizOtav.io &&
 git commit -am "$1" &&
