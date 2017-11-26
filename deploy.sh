@@ -3,7 +3,7 @@ git commit -am "$1" &&
 git push &&
 ./interface/npm run build &&
 sed -i -e 's/\/static/\/ibd\/static/g' ./interface/dist/index.html
-for i in ./interface/dist/js/*.js; do
+for i in ./interface/dist/js/*; do
     sed -i -e 's/\/static/\/ibd\/static/g' $i
 done
 rm -r ~/LuizOtav.io/ibd &&
