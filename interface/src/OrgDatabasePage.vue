@@ -1,18 +1,22 @@
 <template>
-  <div id="org-database-page">
-    <div id="title">
-      <h1>Opendata AIG Brazil</h1>
-      <h2>Ocorrências Aeronáuticas na Aviação Civil Brasileira</h2>
+  <div>
+    <div id="org-database-page">
+      <div id="title">
+        <h1>Opendata AIG Brazil</h1>
+        <h2>Ocorrências Aeronáuticas na Aviação Civil Brasileira</h2>
+      </div>
+      <text-p v-for="desc in descs" :key="desc" :text="desc" />
+      <h4>Consulta ao banco</h4>
+      <text-p :text="'Utilizando o modelo relacional descrito abaixo, é possível fazer consultas no banco:'" />
+      <div id="dataset" >
+        <img src="./assets/data_model.png" alt="">
+      </div>
+      <p>Insira no campo abaixo sua pesquisa e pressione <b>Enter</b>:</p>
+      <div class="query-input">
+        <b-form-input @keyup.enter.native="getQuery()" v-model="query" type="text" placeholder="Insira a query SQL"></b-form-input>
+      </div>
+      <div class="total-result" v-if="rowCount != -1">Total de resultados: <b>{{rowCount}}</b></div>
     </div>
-    <text-p v-for="desc in descs" :key="desc" :text="desc" />
-    <h4>Consulta ao banco</h4>
-    <text-p :text="'Utilizando o modelo relacional descrito abaixo, é possível fazer consultas no banco:'" />
-    <div id="dataset" >
-      <img src="./assets/data_model.png" alt="">
-    </div>
-    <p>Insira no campo abaixo sua pesquisa e pressione <b>Enter</b>:</p>
-    <b-form-input @keyup.enter.native="getQuery()" v-model="query" type="text" placeholder="Insira a query SQL"></b-form-input>
-    <div class="total-result" v-if="rowCount != -1">Total de resultados: {{rowCount}}</div>
     <div class="table-box" v-if="rows.length">
       <b-table striped hover :items="rows"></b-table>
     </div>
@@ -43,11 +47,20 @@
     },
     methods: {
       getQuery: function () {
+        this.rows = []
         this.loading = true
-        let baseUrl = 'https://luizotavioapi.herokuapp.com/getQuery?q='
-        this.$http.get(baseUrl + this.query).then(response => {
+        let baseUrl = 'https://luizotavioapi.herokuapp.com/getQuery?q=' + this.query
+        this.query = ''
+        this.$http.get(baseUrl).then(response => {
           if (response.body && response.body.rows && response.body.rows.length) {
             this.rows = response.body.rows
+            let time = 50
+            for (let heig = 500; heig < document.body.scrollHeight; heig += 10) {
+              time += 15
+              setTimeout(function () {
+                window.scrollTo(0, heig)
+              }, time)
+            }
             this.rowCount = response.body.rowCount
           }
           this.loading = false
@@ -65,7 +78,11 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
-    padding: 50px 30px;
+    padding: 50px 30px 0 30px;
+  }
+
+  .query-input {
+    margin-bottom: 15px;
   }
 
   #title {
