@@ -65,7 +65,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
-    padding: 50px;
+    padding: 50px 30px;
   }
 
   #title {
