@@ -4,7 +4,7 @@ git push &&
 cd ~/gov_database/interface &&
 npm run build &&
 sed -i -e 's/\/static/\/ibd\/static/g' ~/gov_database/interface/dist/index.html
-cd ~/gov_database/interface/dist/js &&
+cd ~/gov_database/interface/dist/static/js &&
 for i in *; do
     sed -i -e 's/\/static/\/ibd\/static/g' $i
 done &&
