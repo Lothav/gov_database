@@ -2,6 +2,7 @@
 git commit -am "$1" &&
 git push &&
 ./interface/npm run build &&
+sed -i -e 's/\/static/\/ibd\/static/g' ./interface/dist/index.html
 rm -r ~/LuizOtav.io/ibd &&
 mv ./interface/dist ~/LuizOtav.io/ibd &&
 cd ~/LuizOtav.io &&
