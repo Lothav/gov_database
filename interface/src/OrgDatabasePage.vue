@@ -87,7 +87,7 @@
 
   .loading-item {
     top: 45vh;
-    left: 45vw;
+    left: calc(50vw - 36px);
     position: fixed;
   }
 
