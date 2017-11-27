@@ -16,7 +16,12 @@
       <div class="query-input">
         <b-form-input @keyup.enter.native="getQuery()" v-model="query" type="text" placeholder="Insira a query SQL"></b-form-input>
       </div>
-      <div class="total-result" v-if="rowCount != -1">Total de resultados: <b>{{rowCount}}</b></div>
+      <b-container class="bv-example-row">
+        <b-row>
+          <b-col><div class="total-result" v-if="rowCount != -1">Total de resultados: <b>{{rowCount}}</b></div></b-col>
+          <b-col><div class="total-result" v-if="timeSpent != -1">Tempo gasto: <b>{{timeSpent}}ms</b></div></b-col>
+        </b-row>
+      </b-container>
     </div>
     <div class="table-box" v-if="rows.length">
       <b-table striped hover :items="rows"></b-table>
@@ -36,6 +41,7 @@
         rows: [],
         loading: false,
         rowCount: -1,
+        timeSpent: -1,
         descs: [
           'A base de dados de ocorrências aronáuticas é gerenciada pelo Centro de Investigação e Prevenção de Acidentes aeonáuticos (CENIPA). Constam nesta base de dados as ocorrências aeronáuticas notificadas ao CENIPA nos últimos 10 anos e que ocorreram em solo brasileiro.',
           'Dentre as Informações disponíveis estão os dados sobre as aeronaves envolvidas, fatalidades, local, data e horário dos eventos e informações taxonômicas típicas das investigações de acidentes (AIG). São resguardadas a privacidade de pessoas físicas/jurídicas envolvidas conforme previsto pela Lei de Acesso à Informação.',
@@ -49,12 +55,15 @@
     methods: {
       getQuery: function () {
         this.rows = []
+        this.rowCount = -1
+        this.timeSpent = -1
         this.loading = true
         let baseUrl = 'https://luizotavioapi.herokuapp.com/getQuery?q=' + this.query
         this.query = ''
         this.$http.get(baseUrl).then(response => {
           if (response.body && response.body.rows && response.body.rows.length) {
             this.rows = response.body.rows
+            this.timeSpent = response.body.time
             let time = 50
             for (let heig = 500; heig < document.body.scrollHeight; heig += 10) {
               time += 15
