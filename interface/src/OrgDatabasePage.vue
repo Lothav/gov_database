@@ -8,10 +8,29 @@
       </div>
       <text-p v-for="desc in descs" :key="desc" :text="desc" />
       <h4>Consulta ao banco</h4>
-      <text-p :text="'Utilizando o modelo relacional descrito abaixo, é possível fazer consultas no banco:'" />
+      <text-p :text="'Modelo relacional:'" />
       <div id="dataset" >
         <img src="./assets/data_model.png" alt="">
       </div>
+      <p>
+        Utilizando o modelo relacional descrito acima, e utilizando o campo abaixo, é possível fazer consultas ao banco de dados.
+      </p>
+      Algumas considerações:
+      <ul>
+        <li>
+          O SGBD em questão é o Postgres, portanto, algumas consultas MySQL podem não funcionar.
+        </li>
+        <li>
+          O banco está configurado para <i>read-only</i>.
+        </li>
+        <li>
+          O tempo de resposta é contabilizado apenas para a consulta, ou seja, o tempo das requisições não é contado.
+        </li>
+        <li>
+          Foi utilizado um Cloud Service gratuito e limitado, portanto, não podemos esperar grandes performances.
+        </li>
+      </ul>
+
       <p>Insira no campo abaixo sua pesquisa e pressione <b>Enter</b>:</p>
       <div class="query-input">
         <b-form-input @keyup.enter.native="getQuery()" v-model="query" type="text" placeholder="Insira a query SQL"></b-form-input>
