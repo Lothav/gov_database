@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a href="https://github.com/gov_database.git"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+    <a href="https://github.com/Luiz0tavio/gov_database.git"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
     <div id="org-database-page">
       <div id="title">
         <h1>Opendata AIG Brazil</h1>
@@ -30,7 +30,7 @@
           Foi utilizado um <i>Cloud Service</i> gratuito e limitado, portanto, instabilidades são inevitáveis.
         </li>
       </ul>
-      <p>Insira no campo abaixo sua pesquisa e pressione <b>Enter</b>:</p>
+      <p>Insira no campo abaixo sua pesquisa e pressione <b>Enter/Return</b>:</p>
       <div class="query-input">
         <b-form-input @keyup.enter.native="getQuery()" v-model="query" type="text" placeholder="Insira a query SQL"></b-form-input>
       </div>
@@ -42,7 +42,11 @@
       </b-container>
     </div>
     <div class="table-box" v-if="rows.length">
-      <b-table striped hover :items="rows"></b-table>
+      <template>
+        <animated-fade-out-down>
+          <b-table striped hover :items="rows"></b-table>
+        </animated-fade-out-down>
+      </template>
     </div>
     <pulse-loader class="loading-item" :color="'#333'" :size="'20px'" :loading="loading" ></pulse-loader>
   </div>
@@ -154,7 +158,7 @@
     max-width: 100%;
     overflow: auto;
     font-size: 12px;
-    height: 100vh;
+    height: 95vh;
   }
 
   #dataset img{

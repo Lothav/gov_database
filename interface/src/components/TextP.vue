@@ -30,7 +30,4 @@
   a {
     color: #42b983;
   }
-  .description {
-    text-align: left;
-  }
 </style>
