@@ -32,6 +32,7 @@
 <script>
   import TextP from './components/TextP'
   import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+  import swal from 'sweetalert2'
 
   export default {
     name: 'org-database-page',
@@ -72,9 +73,28 @@
               }, time)
             }
             this.rowCount = response.body.rowCount
+          } else {
+            let err = 'Sua query não é válida!'
+            if (response.body.routine === 'PreventCommandIfReadOnly') {
+              err = 'Você não tem permissão para isso pequeno gafanhoto'
+            }
+            console.log(response)
+            err += ('<br> Erro: <b>' + response.body.routine + '</b>')
+            swal({
+              title: 'Erro',
+              html: err,
+              type: 'error',
+              confirmButtonText: 'Ok :/'
+            })
           }
           this.loading = false
-        }, response => {
+        }, () => {
+          swal({
+            title: 'Erro',
+            text: 'Servidor faleceu',
+            type: 'error',
+            confirmButtonText: 'Ok :/'
+          })
           this.loading = false
         })
       }
