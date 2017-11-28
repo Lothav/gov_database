@@ -18,20 +18,18 @@
       Algumas considerações:
       <ul>
         <li>
-          
           O SGBD em questão é o Postgres, portanto, algumas consultas MySQL podem não funcionar.
         </li>
         <li>
           O banco está configurado para <i>read-only</i>.
         </li>
         <li>
-          O tempo de resposta é contabilizado apenas para a consulta, ou seja, o tempo das requisições não é contado.
+          O tempo de resposta é contabilizado apenas para a consulta, ou seja, o tempo entre as requisições não é contabilizado.
         </li>
         <li>
-          Foi utilizado um Cloud Service gratuito e limitado, portanto, não podemos esperar grandes performances.
+          Foi utilizado um <i>Cloud Service</i> gratuito e limitado, portanto, instabilidades são inevitáveis.
         </li>
       </ul>
-
       <p>Insira no campo abaixo sua pesquisa e pressione <b>Enter</b>:</p>
       <div class="query-input">
         <b-form-input @keyup.enter.native="getQuery()" v-model="query" type="text" placeholder="Insira a query SQL"></b-form-input>
