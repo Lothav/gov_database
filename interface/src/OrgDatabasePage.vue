@@ -18,6 +18,7 @@
       Algumas considerações:
       <ul>
         <li>
+          
           O SGBD em questão é o Postgres, portanto, algumas consultas MySQL podem não funcionar.
         </li>
         <li>
