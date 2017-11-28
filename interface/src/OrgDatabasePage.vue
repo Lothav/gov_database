@@ -55,10 +55,21 @@
     },
     methods: {
       getQuery: function () {
+        if (this.query === '') {
+          swal({
+            title: 'Atenção',
+            html: 'Query não pode ser vazia',
+            type: 'info',
+            confirmButtonText: 'Beles'
+          })
+          return
+        }
+
         this.rows = []
         this.rowCount = -1
         this.timeSpent = -1
         this.loading = true
+
         let baseUrl = 'https://luizotavioapi.herokuapp.com/getQuery?q=' + this.query
         this.query = ''
         this.$http.get(baseUrl).then(response => {
@@ -79,7 +90,7 @@
               err = 'Você não tem permissão para isso pequeno gafanhoto'
             }
             console.log(response)
-            err += ('<br> Erro: <b>' + response.body.routine + '</b>')
+            err += ('<br><br> Erro: <b>' + response.body.routine + '</b>')
             swal({
               title: 'Erro',
               html: err,
